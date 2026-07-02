@@ -5,7 +5,7 @@
 
 ---
 
-## 🗂️ Mapa general
+## Mapa general
 
 | Paquete | Esquema | Bloque | Requerimientos | Quién opera |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@
 
 ---
 
-## 🟢 Bloque 1 — PKG_VALOR (VAL01–VAL05)
+## Bloque 1 — PKG_VALOR (VAL01–VAL05)
 
 *El corazón del negocio: el ciclo de vida del préstamo.*
 
@@ -31,21 +31,21 @@
 
 ---
 
-## 🔒 Bloque 2 — PKG_SEGURIDAD (SEG01–SEG05)
+## Bloque 2 — PKG_SEGURIDAD (SEG01–SEG05)
 
 *Control de acceso, auditoría y protección de datos.*
 
 | Código | Requerimiento | Qué hace y qué valida |
 |---|---|---|
 | **SEG01** | Autenticar usuario | Función que valida usuario y contraseña (comparando hash, nunca texto plano). Devuelve si el acceso es válido y el rol del usuario. |
-| **SEG02** | Verificar permisos por rol ⭐ *actualizado* | Función que comprueba si el rol del usuario tiene permitido ejecutar cierta operación (ej.: un cajero NO puede aprobar préstamos). Lanza excepción si no tiene permiso. **Actualización:** se suma al Gerente en la matriz de permisos — puede ejecutar reportes, pero se le niega cualquier operación de negocio (registrar, aprobar, pagar). Permite demostrar en la sustentación que el Gerente es rechazado al intentar aprobar un préstamo. |
+| **SEG02** | Verificar permisos por rol *actualizado* | Función que comprueba si el rol del usuario tiene permitido ejecutar cierta operación (ej.: un cajero NO puede aprobar préstamos). Lanza excepción si no tiene permiso. **Actualización:** se suma al Gerente en la matriz de permisos — puede ejecutar reportes, pero se le niega cualquier operación de negocio (registrar, aprobar, pagar). Permite demostrar en la sustentación que el Gerente es rechazado al intentar aprobar un préstamo. |
 | **SEG03** | Registrar auditoría | Procedimiento que graba en la bitácora toda acción significativa: usuario, acción, tabla afectada, fecha/hora. Es el "ojo que todo lo ve". |
 | **SEG04** | Bloquear usuario por intentos fallidos | Procedimiento que cuenta intentos fallidos de login y bloquea la cuenta tras 3 intentos. El administrador puede desbloquear. |
 | **SEG05** | Encriptar y consultar datos sensibles | Usa `DBMS_CRYPTO` para encriptar datos sensibles del cliente (ej.: ingresos, DNI) y una función que solo permite verlos a roles autorizados. Aquí se cubre el requisito de encriptación del caso. |
 
 ---
 
-## ⚙️ Bloque 3 — PKG_ADMINISTRACION (ADM01–ADM05)
+## Bloque 3 — PKG_ADMINISTRACION (ADM01–ADM05)
 
 *Datos maestros, catálogos y parámetros configurables.*
 
@@ -59,7 +59,7 @@
 
 ---
 
-## 🔍 Bloque 4 — PKG_CONSULTAS (CON01–CON05)
+## Bloque 4 — PKG_CONSULTAS (CON01–CON05)
 
 *Información del día a día para el trabajo operativo.*
 
@@ -73,11 +73,9 @@
 
 ---
 
-## 📊 Bloque 5 — PKG_REPORTES (REP01–REP05)
+## Bloque 5 — PKG_REPORTES (REP01–REP05)
 
 *Información consolidada para la gerencia.*
-
-> ⭐ **Actualización de bloque:** los cinco reportes mantienen exactamente la misma lógica de cálculo, pero ahora viven en el esquema `G01_REPORTES` y son consumidos por el **Gerente en modo solo lectura**. Este cambio no altera el requerimiento, pero refuerza la justificación de negocio de los 3 esquemas y el principio de mínimo privilegio.
 
 | Código | Requerimiento | Qué hace y qué valida |
 |---|---|---|
@@ -88,15 +86,3 @@
 | **REP05** | Análisis por tipo/calificación | Distribución de préstamos por tipo y por calificación crediticia (cuántos A, B, C, D). Análisis por categoría. |
 
 ---
-
-## 📝 Resumen de la actualización (incorporación del rol Gerente)
-
-| Elemento | ¿Cambia? | Detalle |
-|---|---|---|
-| Los 25 requerimientos en sí | ❌ Se mantienen | Ningún requerimiento nuevo ni eliminado |
-| Bloques y paquetes | ❌ Se mantienen | Misma estructura de 5 paquetes |
-| **SEG02** — Verificar permisos por rol | 🔧 Se enriquece | Suma al Gerente en la matriz de permisos (solo reportes, cero operaciones de negocio) |
-| **REP01–REP05** | 🔧 Se enriquecen | Pasan a vivir en esquema propio `G01_REPORTES`, consumidos en solo lectura por el Gerente |
-| Esquemas | ✅ Cambia | Se confirman los 3 esquemas: `G01_NEGOCIO`, `G01_SEGURIDAD`, `G01_REPORTES` |
-
-**Conclusión:** la incorporación del rol Gerente no obliga a rediseñar el sistema. Fortalece la arquitectura de 3 esquemas y el caso de prueba de segregación de acceso, sin generar requerimientos nuevos.

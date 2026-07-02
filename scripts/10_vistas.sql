@@ -1,19 +1,3 @@
--- #####################################################################
--- #  SCRIPT 10: VISTAS OPERATIVAS Y GERENCIALES                      #
--- #####################################################################
---
--- ORDEN DE EJECUCION:
---   PARTE A -> CONN_NEGOCIO   (2 vistas operativas)
---   PARTE B -> CONN_REPORTES  (1 vista gerencial)
---
--- La vista gerencial (Parte B) lee de c##g01_negocio y requiere los
--- GRANT SELECT del script 11.
--- =====================================================================
-
-
--- #####################################################################
--- PARTE A : VISTAS OPERATIVAS (ejecutar en CONN_NEGOCIO)
--- #####################################################################
 
 -- Vista 1: Prestamos activos con datos del cliente
 CREATE OR REPLACE VIEW v_prestamos_activos AS

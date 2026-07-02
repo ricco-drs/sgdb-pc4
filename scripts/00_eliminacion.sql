@@ -1,16 +1,3 @@
--- #####################################################################
--- #  SCRIPT 00: ELIMINACION CONTROLADA                               #
--- #  PROYECTO: PrestaFacil - Sistema de Gestion de Prestamos         #
--- #  EJECUTAR EN: MiOracle (SYS) en CDB$ROOT                         #
--- #  ADVERTENCIA: Borra todo el proyecto para recrearlo desde cero.  #
--- #####################################################################
---
--- Este script usa manejo de excepciones (bucles FOR) para NO fallar
--- si los objetos aun no existen. Es seguro ejecutarlo en un Oracle
--- limpio (simplemente no encontrara nada que borrar).
---
--- =====================================================================
-
 SET SERVEROUTPUT ON;
 
 -- ---------------------------------------------------------------------

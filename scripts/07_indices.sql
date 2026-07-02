@@ -1,15 +1,3 @@
--- #####################################################################
--- #  SCRIPT 07: INDICES                                              #
--- #  Indices justificados para consultas y reportes frecuentes.     #
--- #####################################################################
---
--- EJECUTAR EN: CONN_NEGOCIO (C##G01_NEGOCIO)
---
--- NOTA: Oracle crea automaticamente indices para las PRIMARY KEY y
--- las restricciones UNIQUE. Por eso aqui solo se crean los indices
--- ADICIONALES sobre columnas que se filtran u ordenan con frecuencia
--- en las consultas (CON) y reportes (REP), pero que no son PK/UK.
--- =====================================================================
 
 -- Busqueda de clientes por apellido (CON04)
 CREATE INDEX ix_cliente_apellidos ON t_cliente (apellidos);

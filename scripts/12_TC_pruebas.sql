@@ -1,34 +1,6 @@
--- #####################################################################
--- #                                                                   #
--- #   PROYECTO: PrestaFacil - Sistema de Gestion de Prestamos         #
--- #   ARCHIVO : TC_PRUEBAS.sql                                        #
--- #   CONTENIDO: Casos de prueba (Test Cases) de los 25 requerimientos#
--- #   MOTOR   : Oracle 19c                                            #
--- #                                                                   #
--- #####################################################################
---
--- INSTRUCCIONES DE EJECUCION:
--- Este archivo esta dividido en 3 BLOQUES segun el esquema/conexion
--- donde se ejecuta cada grupo de pruebas:
---
---   BLOQUE A -> Ejecutar conectado como C##G01_SEGURIDAD  (CONN_SEGURIDAD)
---   BLOQUE B -> Ejecutar conectado como C##G01_NEGOCIO    (CONN_NEGOCIO)
---   BLOQUE C -> Ejecutar conectado como C##G01_REPORTES   (CONN_REPORTES)
---
--- Cada caso de prueba esta etiquetado con su codigo (TC_VAL01, TC_SEG01, etc.)
--- para su correspondencia directa con la Matriz de Trazabilidad del informe.
---
--- Cada prueba imprime su resultado mediante DBMS_OUTPUT, por lo que se
--- recomienda tener activada la salida del servidor (SET SERVEROUTPUT ON).
---
--- =====================================================================
 
-
--- #####################################################################
 -- #  BLOQUE A - PRUEBAS DE SEGURIDAD                                  #
 -- #  Ejecutar en: CONN_SEGURIDAD  (usuario C##G01_SEGURIDAD)          #
--- #####################################################################
-
 SET SERVEROUTPUT ON;
 
 -- =====================================================================

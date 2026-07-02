@@ -5,7 +5,7 @@
 
 ---
 
-## 📖 Contexto de Negocio: "PrestaFácil"
+## Contexto de Negocio: "PrestaFácil"
 
 **PrestaFácil** es una fintech peruana especializada en préstamos personales rápidos para trabajadores y emprendedores, bajo el lema *"Tu crédito en 24 horas, sin vueltas"*. A diferencia de un banco tradicional, su ventaja competitiva son las decisiones ágiles y transparentes — algo que solo es posible si su información está perfectamente ordenada y protegida.
 
@@ -24,19 +24,19 @@ Una base de datos robusta en **Oracle 19c** que sea el corazón del negocio: que
 
 ---
 
-## 👥 Actores del sistema
+## Actores del sistema
 
 | Rol | Qué hace | Nivel de acceso |
 |---|---|---|
-| 🧑‍💼 Analista de crédito | Registra solicitudes, evalúa clientes y aprueba/rechaza préstamos | Opera datos de negocio |
-| 💵 Cajero | Registra los pagos de las cuotas de los clientes | Opera datos de negocio (limitado) |
-| 👔 Supervisor | Consulta el estado operativo, cuotas morosas y cartera | Lectura operativa |
-| 📈 Gerente | Analiza reportes consolidados para tomar decisiones estratégicas | Solo reportes — nunca datos crudos |
-| ⚙️ Administrador | Gestiona usuarios, tasas, parámetros y seguridad del sistema | Administración y seguridad |
+|  Analista de crédito | Registra solicitudes, evalúa clientes y aprueba/rechaza préstamos | Opera datos de negocio |
+|  Cajero | Registra los pagos de las cuotas de los clientes | Opera datos de negocio (limitado) |
+|  Supervisor | Consulta el estado operativo, cuotas morosas y cartera | Lectura operativa |
+|  Gerente | Analiza reportes consolidados para tomar decisiones estratégicas | Solo reportes — nunca datos crudos |
+|  Administrador | Gestiona usuarios, tasas, parámetros y seguridad del sistema | Administración y seguridad |
 
 ---
 
-## 🔐 Seguridad: cada quien ve lo suyo
+## Seguridad: cada quien ve lo suyo
 
 El diseño de PrestaFácil se basa en separar físicamente tres tipos de información con sensibilidades muy distintas:
 
@@ -48,20 +48,20 @@ El caso del Gerente ilustra el principio de **mínimo privilegio** de forma tang
 
 ---
 
-## 🔄 Ciclo de vida de un préstamo
+## Ciclo de vida de un préstamo
 
-1. **Solicitud 📝** — El analista registra al cliente (datos personales, ingresos mensuales) y crea una solicitud por un monto y plazo deseados.
-2. **Evaluación 🔍** — El sistema calcula automáticamente la capacidad de pago con una fórmula fija (40% del ingreso) y asigna una calificación crediticia (A, B, C o D).
-3. **Decisión ✅❌** — Según la calificación, el analista aprueba, rechaza o deja pendiente la solicitud. *(Regla: calificación D se rechaza automáticamente)*.
-4. **Cronograma 📅** — Si se aprueba, el sistema genera automáticamente el cronograma de cuotas con el **método francés de amortización** (capital + interés + fecha de vencimiento por cada cuota).
-5. **Pagos 💸** — El cajero registra los pagos. El sistema actualiza el saldo y marca la cuota como pagada.
-6. **Morosidad 🚨** — Si una cuota pasa 5 días de vencida sin pagar, el sistema la marca como morosa y genera una alerta interna.
-7. **Auditoría 🕵️** — Toda acción importante (aprobar, rechazar, pagar, editar) queda registrada con usuario + fecha/hora en una bitácora.
-8. **Decisiones gerenciales 📊** — El Gerente consulta reportes consolidados (cartera total, índice de morosidad, rankings, recaudación) para dirigir el rumbo del negocio, sin tocar jamás un dato operativo.
+1. **Solicitud ** — El analista registra al cliente (datos personales, ingresos mensuales) y crea una solicitud por un monto y plazo deseados.
+2. **Evaluación ** — El sistema calcula automáticamente la capacidad de pago con una fórmula fija (40% del ingreso) y asigna una calificación crediticia (A, B, C o D).
+3. **Decisión ** — Según la calificación, el analista aprueba, rechaza o deja pendiente la solicitud. *(Regla: calificación D se rechaza automáticamente)*.
+4. **Cronograma ** — Si se aprueba, el sistema genera automáticamente el cronograma de cuotas con el **método francés de amortización** (capital + interés + fecha de vencimiento por cada cuota).
+5. **Pagos ** — El cajero registra los pagos. El sistema actualiza el saldo y marca la cuota como pagada.
+6. **Morosidad ** — Si una cuota pasa 5 días de vencida sin pagar, el sistema la marca como morosa y genera una alerta interna.
+7. **Auditoría ** — Toda acción importante (aprobar, rechazar, pagar, editar) queda registrada con usuario + fecha/hora en una bitácora.
+8. **Decisiones gerenciales ** — El Gerente consulta reportes consolidados (cartera total, índice de morosidad, rankings, recaudación) para dirigir el rumbo del negocio, sin tocar jamás un dato operativo.
 
 ---
 
-## 📐 Reglas de negocio clave
+## Reglas de negocio clave
 
 | Regla | Definición |
 |---|---|
@@ -75,7 +75,7 @@ El caso del Gerente ilustra el principio de **mínimo privilegio** de forma tang
 
 ---
 
-## 🗂️ Arquitectura: organización en 3 esquemas
+## Arquitectura: organización en 3 esquemas
 
 | Esquema | Contenido | Quién accede | Modo |
 |---|---|---|---|
@@ -87,7 +87,7 @@ El caso del Gerente ilustra el principio de **mínimo privilegio** de forma tang
 
 ---
 
-## 🛠️ Stack tecnológico
+## Stack tecnológico
 
 - **Motor de base de datos:** Oracle Database 19c Enterprise Edition
 - **Lenguaje procedural:** PL/SQL (funciones, procedimientos, triggers, paquetes)
@@ -95,20 +95,9 @@ El caso del Gerente ilustra el principio de **mínimo privilegio** de forma tang
 
 ---
 
-## 📌 Estado del proyecto
+## Autores
 
-- [x] Contexto de negocio definido
-- [ ] Modelo Entidad-Relación (lógico y físico)
-- [ ] Diseño de los 3 esquemas (`G01_NEGOCIO`, `G01_SEGURIDAD`, `G01_REPORTES`)
-- [ ] Scripts DDL de creación de tablas y restricciones
-- [ ] Paquetes PL/SQL (evaluación crediticia, cronograma de cuotas, pagos, auditoría)
-- [ ] Vistas y reportes gerenciales
-- [ ] Gestión de usuarios, roles y privilegios (GRANT/REVOKE)
-- [ ] Pruebas y validación de reglas de negocio
-
----
-
-## 👤 Autor
-
-Ricco — Universidad Nacional de Ingeniería
+Ricco Didier Rashuaman Sapallanay
+Christopher Henrry Albino Soto
+Luis Angel Vargas Ponce 
 Curso: SW609 – Sistemas de Gestión de Base de Datos

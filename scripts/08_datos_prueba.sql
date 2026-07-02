@@ -1,27 +1,3 @@
--- #####################################################################
--- #  SCRIPT 08: DATOS DE PRUEBA (DATOS MAESTROS BASE)                #
--- #####################################################################
---
--- ORDEN DE EJECUCION (respetar - hay dependencias cruzadas):
---   PARTE A -> CONN_SEGURIDAD  (roles, operaciones, usuarios, permisos)
---   PARTE B -> CONN_NEGOCIO    (tipos de prestamo, parametros, clientes)
---
--- La PARTE A va primero porque NEGOCIO referencia usuarios de
--- SEGURIDAD (id_usuario_registro, etc.).
---
--- Los usuarios se insertan con su contrasena ya hasheada en SHA256
--- mediante DBMS_CRYPTO.HASH (mismo metodo que usa PKG_SEGURIDAD para
--- validar el login). Requiere el GRANT EXECUTE ON DBMS_CRYPTO que se
--- otorga en el script 01.
---
--- Contrasenas de prueba:
---   admin/admin123  ana/ana123  caja/caja123  super/super123  geren/geren123
--- =====================================================================
-
-
--- #####################################################################
--- PARTE A : DATOS DE SEGURIDAD (ejecutar en CONN_SEGURIDAD)
--- #####################################################################
 
 -- ---- ROLES ----
 INSERT INTO t_rol (id_rol, nombre, descripcion, estado)
